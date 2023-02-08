@@ -3,6 +3,7 @@ package com.example.composetodoapp.ui.theme
 import androidx.compose.material.Colors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.DarkGray
 import androidx.compose.ui.graphics.Color.Companion.LightGray
 
 val Purple200 = Color(0xFFBB86FC)
@@ -22,4 +23,16 @@ val Colors.topAppBarContentColor: Color
 val Colors.topAppBarBackgroundColor: Color
     @Composable
     get() = if (isLight) Purple500 else Color.Black
+
+val Colors.taskItemTextColor: Color
+    @Composable
+    get() = if (isLight) DarkGray else LightGray
+
+val Colors.taskItemBackgroundColor: Color
+    @Composable
+    get() = if (isLight) Color.White else DarkGray
+
+val Colors.fabBackgroundColor: Color
+    @Composable
+    get() = if (isLight) Teal200 else Purple700
 

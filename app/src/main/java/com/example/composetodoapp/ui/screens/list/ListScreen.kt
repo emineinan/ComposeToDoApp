@@ -8,12 +8,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import com.example.composetodoapp.ui.viewmodels.MainViewModel
-import com.example.composetodoapp.util.SearchAppBarState
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import com.example.composetodoapp.R
-import com.example.composetodoapp.ui.theme.topAppBarBackgroundColor
+import com.example.composetodoapp.ui.theme.fabBackgroundColor
+import com.example.composetodoapp.ui.viewmodels.MainViewModel
+import com.example.composetodoapp.util.SearchAppBarState
 
 @Composable
 fun ListScreen(
@@ -40,7 +40,7 @@ fun ListScreen(
 fun ListFab(onFabClicked: (taskId: Int) -> Unit) {
     FloatingActionButton(
         onClick = { onFabClicked(-1) },
-        backgroundColor = MaterialTheme.colors.topAppBarBackgroundColor
+        backgroundColor = MaterialTheme.colors.fabBackgroundColor
     ) {
         Icon(
             imageVector = Icons.Filled.Add,
