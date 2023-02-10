@@ -17,21 +17,24 @@ import com.example.composetodoapp.data.models.Priority
 import com.example.composetodoapp.data.models.ToDoTask
 import com.example.composetodoapp.ui.theme.*
 import androidx.compose.foundation.lazy.items
+import com.example.composetodoapp.util.RequestState
 
 
 @ExperimentalMaterialApi
 @Composable
 fun ListContent(
-    tasks: List<ToDoTask>,
+    tasks: RequestState<List<ToDoTask>>,
     navigateToTaskScreen: (taskId: Int) -> Unit
 ) {
-    if (tasks.isEmpty()) {
-        EmptyContent()
-    } else {
-        DisplayTasks(
-            tasks = tasks,
-            navigateToTaskScreen = navigateToTaskScreen
-        )
+    if (tasks is RequestState.Success) {
+        if (tasks.data.isEmpty()) {
+            EmptyContent()
+        } else {
+            DisplayTasks(
+                tasks = tasks.data,
+                navigateToTaskScreen = navigateToTaskScreen
+            )
+        }
     }
 }
 
