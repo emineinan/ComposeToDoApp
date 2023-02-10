@@ -17,6 +17,7 @@ import com.example.composetodoapp.data.models.Priority
 import com.example.composetodoapp.data.models.ToDoTask
 import com.example.composetodoapp.ui.theme.*
 import androidx.compose.foundation.lazy.items
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.composetodoapp.util.RequestState
 
 
@@ -110,7 +111,8 @@ fun TaskItem(toDoTask: ToDoTask, navigateToTaskScreen: (taskId: Int) -> Unit) {
 
 @ExperimentalMaterialApi
 @Composable
-fun TaskItemPreview() {
+@Preview
+private fun TaskItemPreview() {
     TaskItem(
         toDoTask = ToDoTask(
             id = 0,
