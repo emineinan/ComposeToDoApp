@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.composetodoapp.navigation.SetupNavigation
@@ -16,6 +17,7 @@ class MainActivity : ComponentActivity() {
     private lateinit var navController: NavHostController
     private val mainViewModel: MainViewModel by viewModels()
 
+    @ExperimentalMaterialApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
