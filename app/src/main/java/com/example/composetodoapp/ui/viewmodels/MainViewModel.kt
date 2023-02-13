@@ -25,6 +25,9 @@ class MainViewModel @Inject constructor(private val repository: ToDoRepository) 
         mutableStateOf(SearchAppBarState.CLOSED)
     val searchTextState: MutableState<String> = mutableStateOf("")
 
+    private val _selectedTask: MutableStateFlow<ToDoTask?> = MutableStateFlow(null)
+    val selectedTask: StateFlow<ToDoTask?> = _selectedTask
+
     fun getAllTasks() {
         _allTasks.value = RequestState.Loading
         try {
@@ -35,6 +38,14 @@ class MainViewModel @Inject constructor(private val repository: ToDoRepository) 
             }
         } catch (e: Exception) {
             _allTasks.value = RequestState.Error(e)
+        }
+    }
+
+    fun getSelectedTask(taskId: Int) {
+        viewModelScope.launch {
+            repository.getSelectedTask(taskId = taskId).collect { task ->
+                _selectedTask.value = task
+            }
         }
     }
 }
