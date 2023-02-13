@@ -4,6 +4,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.composetodoapp.data.models.Priority
 import com.example.composetodoapp.data.models.ToDoTask
 import com.example.composetodoapp.data.repositories.ToDoRepository
 import com.example.composetodoapp.util.RequestState
@@ -20,6 +21,11 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(private val repository: ToDoRepository) : ViewModel() {
     private val _allTasks = MutableStateFlow<RequestState<List<ToDoTask>>>(RequestState.Idle)
     val allTasks: StateFlow<RequestState<List<ToDoTask>>> = _allTasks
+
+    val id: MutableState<Int> = mutableStateOf(0)
+    val title: MutableState<String> = mutableStateOf("")
+    val description: MutableState<String> = mutableStateOf("")
+    val priority: MutableState<Priority> = mutableStateOf(Priority.LOW)
 
     val searchAppBarState: MutableState<SearchAppBarState> =
         mutableStateOf(SearchAppBarState.CLOSED)
@@ -46,6 +52,20 @@ class MainViewModel @Inject constructor(private val repository: ToDoRepository) 
             repository.getSelectedTask(taskId = taskId).collect { task ->
                 _selectedTask.value = task
             }
+        }
+    }
+
+    fun updateTaskFields(selectedTask: ToDoTask?) {
+        if (selectedTask != null) {
+            id.value = selectedTask.id
+            title.value = selectedTask.title
+            description.value = selectedTask.description
+            priority.value = selectedTask.priority
+        } else {
+            id.value = 0
+            title.value = ""
+            description.value = ""
+            priority.value = Priority.LOW
         }
     }
 }
