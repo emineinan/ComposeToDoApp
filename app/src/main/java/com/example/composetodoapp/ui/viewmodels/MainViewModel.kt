@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.composetodoapp.data.models.Priority
 import com.example.composetodoapp.data.models.ToDoTask
 import com.example.composetodoapp.data.repositories.ToDoRepository
+import com.example.composetodoapp.util.Constants.MAX_TITLE_LENGTH
 import com.example.composetodoapp.util.RequestState
 import com.example.composetodoapp.util.SearchAppBarState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -66,6 +67,12 @@ class MainViewModel @Inject constructor(private val repository: ToDoRepository) 
             title.value = ""
             description.value = ""
             priority.value = Priority.LOW
+        }
+    }
+
+    fun updateTitle(newTitle: String) {
+        if (newTitle.length < MAX_TITLE_LENGTH) {
+            title.value = newTitle
         }
     }
 }
