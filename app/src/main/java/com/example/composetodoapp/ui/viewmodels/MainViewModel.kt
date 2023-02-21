@@ -7,10 +7,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.composetodoapp.data.models.Priority
 import com.example.composetodoapp.data.models.ToDoTask
 import com.example.composetodoapp.data.repositories.ToDoRepository
+import com.example.composetodoapp.util.Action
 import com.example.composetodoapp.util.Constants.MAX_TITLE_LENGTH
 import com.example.composetodoapp.util.RequestState
 import com.example.composetodoapp.util.SearchAppBarState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
@@ -34,6 +36,8 @@ class MainViewModel @Inject constructor(private val repository: ToDoRepository) 
 
     private val _selectedTask: MutableStateFlow<ToDoTask?> = MutableStateFlow(null)
     val selectedTask: StateFlow<ToDoTask?> = _selectedTask
+
+    val action: MutableState<Action> = mutableStateOf(Action.NO_ACTION)
 
     fun getAllTasks() {
         _allTasks.value = RequestState.Loading
@@ -68,6 +72,41 @@ class MainViewModel @Inject constructor(private val repository: ToDoRepository) 
             description.value = ""
             priority.value = Priority.LOW
         }
+    }
+
+    private fun addTask() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val toDoTask = ToDoTask(
+                title = title.value,
+                description = description.value,
+                priority = priority.value
+            )
+            repository.addTask(toDoTask = toDoTask)
+        }
+    }
+
+    fun handleDatabaseActions(action: Action) {
+        when (action) {
+            Action.ADD -> {
+                addTask()
+            }
+            Action.UPDATE -> {
+
+            }
+            Action.DELETE -> {
+
+            }
+            Action.DELETE_ALL -> {
+
+            }
+            Action.UNDO -> {
+
+            }
+            else -> {
+
+            }
+        }
+        this.action.value = Action.NO_ACTION
     }
 
     fun updateTitle(newTitle: String) {
