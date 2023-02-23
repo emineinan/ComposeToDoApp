@@ -124,7 +124,7 @@ class MainViewModel @Inject constructor(private val repository: ToDoRepository) 
 
             }
             Action.UNDO -> {
-
+                addTask()
             }
             else -> {
 
