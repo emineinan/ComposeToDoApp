@@ -19,4 +19,6 @@
     <string name="description">Description</string>
     <string name="delete_task">Remove \'%1$s\'?</string>
     <string name="delete_task_confirmation">Are you sure you want to remove \'%1$s\'?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
 </resources>
