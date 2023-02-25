@@ -20,7 +20,7 @@ fun ListScreen(
     mainViewModel: MainViewModel
 ) {
     LaunchedEffect(key1 = true) {
-        mainViewModel.allTasks
+        mainViewModel.getAllTasks()
     }
 
     val action by mainViewModel.action
