@@ -18,6 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.composetodoapp.R
+import com.example.composetodoapp.ui.theme.MediumGray
 
 @Composable
 fun EmptyContent() {
@@ -32,7 +33,7 @@ fun EmptyContent() {
             modifier = Modifier.size(120.dp),
             painter = painterResource(id = R.drawable.ic_sad_face),
             contentDescription = stringResource(id = R.string.sad_face_icon),
-            tint = Color.Gray
+            tint = MediumGray
         )
         Text(
             text = stringResource(id = R.string.empty_content),
