@@ -1,6 +1,5 @@
 package com.example.composetodoapp.components
 
-import android.text.Layout
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
