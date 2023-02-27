@@ -39,7 +39,7 @@ fun ListAppBar(
             DefaultListAppBar(onSearchClicked = {
                 mainViewModel.searchAppBarState.value = SearchAppBarState.OPENED
             },
-                onSortClicked = {},
+                onSortClicked = { mainViewModel.persistSortState(it) },
                 onDeleteAllConfirmed = {
                     mainViewModel.action.value = Action.DELETE_ALL
                 })
