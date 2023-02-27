@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.composetodoapp.data.models.Priority
 import com.example.composetodoapp.data.models.ToDoTask
+import com.example.composetodoapp.data.repositories.DataStoreRepository
 import com.example.composetodoapp.data.repositories.ToDoRepository
 import com.example.composetodoapp.util.Action
 import com.example.composetodoapp.util.Constants.MAX_TITLE_LENGTH
@@ -21,7 +22,10 @@ import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val repository: ToDoRepository) : ViewModel() {
+class MainViewModel @Inject constructor(
+    private val repository: ToDoRepository,
+    private val dataStoreRepository: DataStoreRepository
+) : ViewModel() {
     private val _allTasks = MutableStateFlow<RequestState<List<ToDoTask>>>(RequestState.Idle)
     val allTasks: StateFlow<RequestState<List<ToDoTask>>> = _allTasks
 
