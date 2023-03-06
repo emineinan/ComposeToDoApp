@@ -7,13 +7,10 @@ import androidx.compose.ui.graphics.Color.Companion.DarkGray
 import androidx.compose.ui.graphics.Color.Companion.LightGray
 
 val Purple200 = Color(0xFFBB86FC)
-val Purple500 = Color(0xFF6200EE)
-val Purple700 = Color(0xFF3700B3)
-val Teal200 = Color(0xFF03DAC5)
-
-val LightGray = Color(0xFFFCFCFC)
+val MainColorLight = Color(0xFF3C488B)
+val MainColor = Color(0xFF2B3467)
+val SecondColor = Color(0xFF3C488B)
 val MediumGray = Color(0xFF9C9C9C)
-val DarkGray = Color(0xFF141414)
 
 val LowPriorityColor = Color(0xFF00C980)
 val MediumPriorityColor = Color(0xFFFFC114)
@@ -30,7 +27,7 @@ val Colors.taskItemBackgroundColor: Color
 
 val Colors.fabBackgroundColor: Color
     @Composable
-    get() = if (isLight) Teal200 else Purple700
+    get() = if (isLight) SecondColor else MainColor
 
 val Colors.topAppBarContentColor: Color
     @Composable
@@ -38,9 +35,9 @@ val Colors.topAppBarContentColor: Color
 
 val Colors.topAppBarBackgroundColor: Color
     @Composable
-    get() = if (isLight) Purple500 else Color.Black
+    get() = if (isLight) MainColorLight else Color.Black
 
 val Colors.splashScreenBackground: Color
     @Composable
-    get() = if (isLight) Purple700 else Color.Black
+    get() = if (isLight) MainColor else Color.Black
 
